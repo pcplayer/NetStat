@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{AB32699D-2524-49E4-9D46-45CDE8DF818E}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="NetStateGUI.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="网络连接状态LOG工具\NetstatLog.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="NetStateGUI">
+        <MSBuild Projects="NetStateGUI.dproj"/>
+    </Target>
+    <Target Name="NetStateGUI:Clean">
+        <MSBuild Projects="NetStateGUI.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NetStateGUI:Make">
+        <MSBuild Projects="NetStateGUI.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="NetstatLog">
+        <MSBuild Projects="网络连接状态LOG工具\NetstatLog.dproj"/>
+    </Target>
+    <Target Name="NetstatLog:Clean">
+        <MSBuild Projects="网络连接状态LOG工具\NetstatLog.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="NetstatLog:Make">
+        <MSBuild Projects="网络连接状态LOG工具\NetstatLog.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="NetStateGUI;NetstatLog"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="NetStateGUI:Clean;NetstatLog:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="NetStateGUI:Make;NetstatLog:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
